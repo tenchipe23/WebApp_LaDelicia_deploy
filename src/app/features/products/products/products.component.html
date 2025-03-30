@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <h2 class="text-center pb-2 TITL">Nuestros Productos</h2>
+
+  <div *ngIf="isLoading" class="text-center">
+    <p>Cargando productos...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    {{ errorMessage }}
+  </div>
+
+  <section *ngIf="!isLoading && !errorMessage" id="productos" class="py-3">
+    <div class="container my-3">
+      <div class="row">
+        <div *ngFor="let product of products" class="col-md-4 mb-4">
+          <div class="card">
+            <img [src]="product.image" (error)="product.image='assets/panaderia_removebg_preview.png'" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">${{ product.price }} MXN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,172 @@
+<div class="d-flex">
+  <app-sidebar-panel></app-sidebar-panel>
+  <div class="flex-grow-1 p-4">
+    <h2 class="text-center mb-4 display-6 text-dark">
+      <i class="bi bi-briefcase-fill me-2"></i>Gestión de Empleados
+    </h2>
+    <div class="card shadow-sm p-4 mb-4 mt-3">
+      <div class="card-body">
+        <h4 class="card-title mb-3" *ngIf="!selectedEmployee">
+          <i class="bi bi-person-plus-fill me-2"></i>Agregar Nuevo Empleado
+        </h4>
+        <h4 class="card-title mb-3" *ngIf="selectedEmployee">
+          <i class="bi bi-pencil-square me-2"></i>Editar Empleado
+        </h4>
+
+        <form [formGroup]="employeeForm" (ngSubmit)="selectedEmployee ? updateEmployee() : addEmployee()">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="name_employee" class="form-label fw-semibold">Nombre</label>
+              <input
+                id="name_employee"
+                type="text"
+                class="form-control"
+                formControlName="name_employee"
+                placeholder="Nombre"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="middle_name" class="form-label fw-semibold">Primer Apellido</label>
+              <input
+                id="middle_name"
+                type="text"
+                class="form-control"
+                formControlName="middle_name"
+                placeholder="Primer Apellido"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="last_name" class="form-label fw-semibold">Segundo Apellido</label>
+              <input
+                id="last_name"
+                type="text"
+                class="form-control"
+                formControlName="last_name"
+                placeholder="Segundo Apellido"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="street_address" class="form-label fw-semibold">Calle</label>
+              <input
+                id="street_address"
+                type="text"
+                class="form-control"
+                formControlName="street_address"
+                placeholder="Dirección de calle"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="city_address" class="form-label fw-semibold">Ciudad</label>
+              <input
+                id="city_address"
+                type="text"
+                class="form-control"
+                formControlName="city_address"
+                placeholder="Ciudad"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="postal_code" class="form-label fw-semibold">Código Postal</label>
+              <input
+                id="postal_code"
+                type="text"
+                class="form-control"
+                formControlName="postal_code"
+                placeholder="Código Postal"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="cellphone_number" class="form-label fw-semibold">Teléfono</label>
+              <input
+                id="cellphone_number"
+                type="text"
+                class="form-control"
+                formControlName="cellphone_number"
+                placeholder="Teléfono"
+              />
+            </div>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-between">
+            <button type="submit" class="btn btn-info px-4">
+              <i class="bi bi-check-circle me-1"></i>
+              {{ selectedEmployee ? 'Actualizar' : 'Agregar' }} Empleado
+            </button>
+            <button
+              *ngIf="selectedEmployee"
+              type="button"
+              class="btn btn-secondary px-4"
+              (click)="cancelEdit()"
+            >
+              <i class="bi bi-x-square me-1"></i>Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tarjeta con la Tabla de Empleados -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">
+          <i class="bi bi-table me-2"></i>Listado de Empleados
+        </h5>
+
+        <app-employee-table
+          [employees]="employees"
+          (editEmployeeEvent)="editEmployee($event)"
+          (deleteEmployeeEvent)="confirmDelete($event)"
+        ></app-employee-table>
+      </div>
+    </div>
+
+    <!-- Modal para eliminar empleado -->
+    <div
+      class="modal fade"
+      id="deleteEmployeeModal"
+      tabindex="-1"
+      aria-labelledby="deleteEmployeeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="deleteEmployeeModalLabel">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>Eliminar Empleado
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de que deseas eliminar este empleado?
+            <br />
+            <small class="text-muted">
+              Esta acción no se puede deshacer.
+            </small>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-arrow-left-circle me-1"></i>Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteEmployee()"
+            >
+              <i class="bi bi-trash me-1"></i>Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-copyright></app-copyright>

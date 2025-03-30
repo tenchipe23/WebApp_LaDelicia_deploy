@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<section id="contact" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4 display-6 text-dark">
+      <i class="bi bi-envelope-fill me-2"></i>Contáctanos
+    </h2>
+    <p class="text-center mb-5 lead">
+      ¿Tienes alguna pregunta o quieres hacer un pedido? ¡Contáctanos!
+    </p>
+    <div class="row">
+      <!-- Formulario de Contacto -->
+      <div class="col-md-6 mb-4">
+        <form class="shadow p-4 bg-white rounded">
+          <div class="mb-3">
+            <label for="name" class="form-label fw-bold">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre completo" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="usuario@ejemplo.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label fw-bold">Mensaje</label>
+            <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-warning btn-lg text-white">
+              <i class="bi bi-send me-1"></i>Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- Información de contacto y mapa -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d944.1594294724974!2d-96.72442303050595!3d18.8142918683445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c48dd573208013%3A0x888e0ebf89e80dd4!2sPanader%C3%ADa%20La%20Delicia!5e0!3m2!1ses-419!2smx!4v1720066373892!5m2!1ses-419!2smx"
+            width="100%" height="250" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="mt-3">
+          <h5 class="fw-bold">Dirección:</h5>
+          <p>Calle de la Panadería 6 Av 1 Cuitlahuac Ver.</p>
+          <h5 class="fw-bold">Correo Electrónico:</h5>
+          <p>Nayro13&#64;gmail.com</p>
+          <h5 class="fw-bold">Teléfono:</h5>
+          <p>271-729-0306</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

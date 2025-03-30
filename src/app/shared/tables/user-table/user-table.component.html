@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table table-hover table-bordered align-middle">
+    <thead class="table-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Teléfono</th>
+      <th>Correo</th>
+      <th>Usuario</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.first_surname }}</td>
+      <td>{{ user.last_surname }}</td>
+      <td>{{ user.phone_number }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.username }}</td>
+      <td class="text-center" style="white-space: nowrap;">
+        <button
+          class="btn btn-warning btn-sm me-2"
+          (click)="abrirModal(user)"
+          title="Editar usuario"
+        >
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="abrirModalEliminar(user.id)"
+          title="Eliminar usuario"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

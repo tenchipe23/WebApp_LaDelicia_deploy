@@ -1,0 +1,42 @@
+<div class="table-responsive">
+  <table class="table table-hover table-bordered align-middle">
+    <thead class="table-light">
+    <tr>
+      <th class="text-center">Nombre</th>
+      <th class="text-center">Primer apellido</th>
+      <th class="text-center">Segundo apellido</th>
+      <th class="text-center">Calle</th>
+      <th class="text-center">Ciudad</th>
+      <th class="text-center">Código Postal</th>
+      <th class="text-center">Teléfono</th>
+      <th class="text-center">Funciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+      <td class="text-center">{{ employee.name_employee }}</td>
+      <td class="text-center">{{ employee.middle_name }}</td>
+      <td class="text-center">{{ employee.last_name }}</td>
+      <td class="text-center">{{ employee.street_address }}</td>
+      <td class="text-center">{{ employee.city_address }}</td>
+      <td class="text-center">{{ employee.postal_code }}</td>
+      <td class="text-center">{{ employee.cellphone_number }}</td>
+      <td class="text-center" style="white-space: nowrap;">
+        <button
+          type="button"
+          class="btn btn-warning btn-sm me-2"
+          (click)="abrirModal(employee.id)"
+        >
+          <i class="bi bi-pencil-square"></i> Editar
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="abrirModalEliminar(employee.id)"
+        >
+          <i class="bi bi-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

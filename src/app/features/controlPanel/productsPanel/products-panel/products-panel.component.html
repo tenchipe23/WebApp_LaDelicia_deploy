@@ -1,0 +1,189 @@
+<div class="d-flex" style="min-height: 100vh;">
+  <!-- Sidebar (menú lateral) -->
+  <app-sidebar-panel class="flex-shrink-0" style="width: 250px;"></app-sidebar-panel>
+
+  <!-- Contenido principal -->
+  <div class="flex-grow-1 p-4">
+    <!-- Encabezado principal con icono -->
+    <h2 class="text-center mb-4 display-6 text-dark">
+      <i class="bi bi-shop me-2"></i>Gestión de Productos
+    </h2>
+
+    <!-- Tarjeta con el formulario de Productos -->
+    <div class="card shadow-sm p-4 mb-4 mt-3">
+      <div class="card-body">
+        <h4 class="card-title mb-3" *ngIf="!selectedProduct">
+          <i class="bi bi-plus-circle me-2"></i>Agregar Nuevo Producto
+        </h4>
+        <h4 class="card-title mb-3" *ngIf="selectedProduct">
+          <i class="bi bi-pencil-square me-2"></i>Editar Producto
+        </h4>
+
+        <form [formGroup]="productForm" (ngSubmit)="selectedProduct ? updateProduct() : addProduct()">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="name_product" class="form-label fw-semibold">Nombre del producto</label>
+              <input
+                id="name_product"
+                type="text"
+                class="form-control"
+                formControlName="name_product"
+                placeholder="Ingresa el nombre del producto..."
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="price_product" class="form-label fw-semibold">Precio del producto</label>
+              <input
+                id="price_product"
+                type="number"
+                class="form-control"
+                formControlName="price_product"
+                placeholder="Ingresa el precio..."
+                min="0"
+                step="0.01"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="categoryid" class="form-label fw-semibold">Categoría del producto</label>
+              <select
+                id="categoryid"
+                class="form-select"
+                formControlName="categoryid"
+              >
+                <option value="" disabled selected>Selecciona una categoría</option>
+                <option value="1">Panadería</option>
+                <option value="2">Repostería</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="stock" class="form-label fw-semibold">Stock del producto</label>
+              <input
+                id="stock"
+                type="number"
+                class="form-control"
+                formControlName="stock"
+                placeholder="Ingresa el stock..."
+                min="0"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="ingredients" class="form-label fw-semibold">Ingredientes</label>
+              <input
+                id="ingredients"
+                type="text"
+                class="form-control"
+                formControlName="ingredients"
+                placeholder="Ingresa los ingredientes..."
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="baking_time" class="form-label fw-semibold">Tiempo de horneado</label>
+              <input
+                id="baking_time"
+                type="text"
+                class="form-control"
+                formControlName="baking_time"
+                placeholder="Ej. 15 min"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="image" class="form-label fw-semibold">Imagen del producto</label>
+              <input
+                type="file"
+                class="form-control"
+                id="image"
+                name="image"
+                accept="image/*"
+                (change)="onFileChange($event)"
+                [ngClass]="{ 'is-invalid': productForm.get('image')?.invalid && productForm.get('image')?.touched }"
+              />
+              <div class="invalid-feedback" *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+                <span *ngIf="productForm.get('image')?.errors?.['required']">
+                  Por favor, selecciona una imagen.
+                </span>
+                <span *ngIf="productForm.get('image')?.errors?.['invalidFileType']">
+                  El archivo debe ser una imagen (jpg, png, gif, etc.).
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-between">
+            <button type="submit" class="btn btn-info px-4">
+              <i class="bi bi-check-circle me-1"></i>
+              {{ selectedProduct ? 'Actualizar' : 'Agregar' }} Producto
+            </button>
+            <button
+              *ngIf="selectedProduct"
+              type="button"
+              class="btn btn-secondary px-4"
+              (click)="selectedProduct = null; productForm.reset()"
+            >
+              <i class="bi bi-x-circle me-1"></i>Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tarjeta con la Tabla de Productos -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">
+          <i class="bi bi-table me-2"></i>Listado de Productos
+        </h5>
+        <app-product-table
+          [products]="products"
+          (updateProduct)="editProduct($event)"
+          (deleteProduct)="confirmDelete($event)"
+        >
+        </app-product-table>
+      </div>
+    </div>
+
+    <!-- Modal para eliminar producto -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="deleteModalLabel">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>Eliminar Producto
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de que deseas eliminar este producto? Esta acción no se puede deshacer.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-arrow-left-circle me-1"></i>Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteProduct()"
+            >
+              <i class="bi bi-trash me-1"></i>Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /flex-grow-1 -->
+</div><!-- /d-flex -->
+
+<app-copyright></app-copyright>

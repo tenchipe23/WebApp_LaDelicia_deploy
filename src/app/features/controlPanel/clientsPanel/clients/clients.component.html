@@ -1,0 +1,310 @@
+<div class="d-flex"  style="min-height: 100vh;">
+  <!-- Menú lateral -->
+  <app-sidebar-panel class="flex-shrink-0 bg-dark" style="width:250px;"></app-sidebar-panel>
+
+  <!-- Contenido principal -->
+  <div class="flex-grow-1 p-4">
+    <!-- Título principal con icono -->
+    <h2 class="text-center mb-4 display-6 text-dark">
+      <i class="bi bi-people-fill me-2"></i>Gestión de Clientes
+    </h2>
+
+    <!-- Tarjeta con el Formulario de Clientes -->
+    <div class="card shadow-sm p-4 mb-4">
+      <div class="card-body">
+        <h4 class="card-title mb-3" *ngIf="!selectedClient">
+          <i class="bi bi-person-plus-fill me-2"></i>Agregar Nuevo Cliente
+        </h4>
+        <h4 class="card-title mb-3" *ngIf="selectedClient">
+          <i class="bi bi-pencil-square me-2"></i>Editar Cliente
+        </h4>
+
+        <form [formGroup]="clientForm" (ngSubmit)="selectedClient ? updateClient() : addClient()">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="name" class="form-label fw-semibold">Nombre</label>
+              <input
+                id="name"
+                type="text"
+                class="form-control"
+                formControlName="name"
+                placeholder="Nombre"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+                <span *ngIf="clientForm.get('name')?.errors?.['required']">
+                  El nombre es requerido.
+                </span>
+                <span *ngIf="clientForm.get('name')?.errors?.['minlength']">
+                  Mínimo 2 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('name')?.errors?.['maxlength']">
+                  Máximo 50 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('name')?.errors?.['pattern']">
+                  El nombre debe contener solo letras.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="first_surname" class="form-label fw-semibold">Primer Apellido</label>
+              <input
+                id="first_surname"
+                type="text"
+                class="form-control"
+                formControlName="first_surname"
+                placeholder="Primer Apellido"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('first_surname')?.invalid && clientForm.get('first_surname')?.touched">
+                <span *ngIf="clientForm.get('first_surname')?.errors?.['required']">
+                  El primer apellido es requerido.
+                </span>
+                <span *ngIf="clientForm.get('first_surname')?.errors?.['minlength']">
+                  Mínimo 2 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('first_surname')?.errors?.['maxlength']">
+                  Máximo 50 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('first_surname')?.errors?.['pattern']">
+                  El primer apellido debe contener solo letras.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="last_surname" class="form-label fw-semibold">Segundo Apellido</label>
+              <input
+                id="last_surname"
+                type="text"
+                class="form-control"
+                formControlName="last_surname"
+                placeholder="Segundo Apellido"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('last_surname')?.invalid && clientForm.get('last_surname')?.touched">
+                <span *ngIf="clientForm.get('last_surname')?.errors?.['minlength']">
+                  Mínimo 2 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('last_surname')?.errors?.['maxlength']">
+                  Máximo 50 caracteres.
+                </span>
+                <span *ngIf="clientForm.get('last_surname')?.errors?.['pattern']">
+                  El segundo apellido debe contener solo letras.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="phone_number" class="form-label fw-semibold">Teléfono</label>
+              <input
+                id="phone_number"
+                type="text"
+                class="form-control"
+                formControlName="phone_number"
+                placeholder="10 dígitos"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('phone_number')?.invalid && clientForm.get('phone_number')?.touched">
+                <span *ngIf="clientForm.get('phone_number')?.errors?.['required']">
+                  El teléfono es requerido.
+                </span>
+                <span *ngIf="clientForm.get('phone_number')?.errors?.['minlength']">
+                  Mínimo 10 dígitos.
+                </span>
+                <span *ngIf="clientForm.get('phone_number')?.errors?.['maxlength']">
+                  Máximo 10 dígitos.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="email" class="form-label fw-semibold">Correo Electrónico</label>
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="usuario@gmail.com"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+                <span *ngIf="clientForm.get('email')?.errors?.['required']">
+                  El correo es requerido.
+                </span>
+                <span *ngIf="clientForm.get('email')?.errors?.['email']">
+                  Formato de correo inválido.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="username" class="form-label fw-semibold">Usuario</label>
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                formControlName="username"
+                placeholder="Nombre de usuario"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('username')?.invalid && clientForm.get('username')?.touched">
+                <span *ngIf="clientForm.get('username')?.errors?.['required']">
+                  El usuario es requerido.
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="password" class="form-label fw-semibold">Contraseña</label>
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Contraseña"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('password')?.invalid && clientForm.get('password')?.touched">
+                <span *ngIf="clientForm.get('password')?.errors?.['required']">
+                  La contraseña es requerida.
+                </span>
+                <span *ngIf="clientForm.get('password')?.errors?.['minlength']">
+                  Mínimo 6 caracteres.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+          <h5 class="mb-3">
+            <i class="bi bi-clipboard-data me-1"></i>Datos de Cliente
+          </h5>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="city" class="form-label fw-semibold">Ciudad</label>
+              <input
+                id="city"
+                type="text"
+                class="form-control"
+                formControlName="city"
+                placeholder="Ciudad o Municipio"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('city')?.invalid && clientForm.get('city')?.touched">
+                <span *ngIf="clientForm.get('city')?.errors?.['required']">
+                  La ciudad es requerida.
+                </span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="date_of_birth" class="form-label fw-semibold">Fecha de Nacimiento</label>
+              <input
+                id="date_of_birth"
+                type="date"
+                class="form-control"
+                formControlName="date_of_birth"
+              />
+              <div class="text-danger" *ngIf="clientForm.get('date_of_birth')?.invalid && clientForm.get('date_of_birth')?.touched">
+                <span *ngIf="clientForm.get('date_of_birth')?.errors?.['required']">
+                  La fecha de nacimiento es requerida.
+                </span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="postal_code" class="form-label fw-semibold">Código Postal</label>
+              <input
+                id="postal_code"
+                type="text"
+                class="form-control"
+                formControlName="postal_code"
+                placeholder="Código Postal"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="id_preferred_payment_method" class="form-label fw-semibold">
+                Método de Pago (ID)
+              </label>
+              <input
+                id="id_preferred_payment_method"
+                type="number"
+                class="form-control"
+                formControlName="id_preferred_payment_method"
+              />
+            </div>
+          </div>
+
+          <div class="mt-4 d-flex justify-content-between">
+            <button type="submit" class="btn btn-info px-4">
+              <i class="bi bi-check-circle me-1"></i>
+              {{ selectedClient ? 'Actualizar' : 'Agregar' }} Cliente
+            </button>
+            <button
+              *ngIf="selectedClient"
+              type="button"
+              class="btn btn-secondary px-4"
+              (click)="cancelEdit()"
+            >
+              <i class="bi bi-x-square me-1"></i>Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tarjeta con la Tabla de Clientes -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">
+          <i class="bi bi-table me-2"></i>Listado de Clientes
+        </h5>
+        <app-client-table
+          [clients]="clients"
+          (editClientEvent)="editClient($event)"
+          (deleteClientEvent)="confirmDelete($event)"
+        ></app-client-table>
+      </div>
+    </div>
+
+    <!-- Modal para eliminar cliente -->
+    <div
+      class="modal fade"
+      id="deleteClientModal"
+      tabindex="-1"
+      aria-labelledby="deleteClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="deleteClientModalLabel">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>Eliminar Cliente
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">¿Estás seguro de que deseas eliminar este cliente?</p>
+            <small class="text-muted">
+              Esta acción no se puede deshacer.
+            </small>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-arrow-left-circle me-1"></i>Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteClient()"
+            >
+              <i class="bi bi-trash me-1"></i>Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-copyright></app-copyright>

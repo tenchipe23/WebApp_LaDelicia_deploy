@@ -1,0 +1,47 @@
+<div class="table-responsive mt-4">
+  <table class="table table-hover table-bordered align-middle">
+    <thead class="table-light">
+    <tr>
+      <th class="text-center">Nombre del producto</th>
+      <th class="text-center">Precio</th>
+      <th class="text-center">Stock</th>
+      <th class="text-center">Ingredientes</th>
+      <th class="text-center">Tiempo de preparación</th>
+      <th class="text-center">Imagen de Producto</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products">
+      <td class="text-center">{{ product.name_product }}</td>
+      <td class="text-center">{{ product.price_product | currency }}</td>
+      <td class="text-center">{{ product.stock }}</td>
+      <td class="text-center">{{ product.ingredients }}</td>
+      <td class="text-center">{{ product.baking_time }}</td>
+      <td class="text-center">
+        <img
+          [src]="product.image"
+          class="card-img-top"
+          alt="{{ product.name_product }}"
+          style="width: 150px; height: 100px; object-fit: cover; border-radius: 8px;"
+          (error)="product.image='assets/panaderia_removebg_preview.png'"
+        >
+      </td>
+      <td class="text-center" style="white-space: nowrap;">
+        <button
+          class="btn btn-warning btn-sm me-2"
+          (click)="onUpdate(product.id)"
+        >
+          <i class="bi bi-pencil-fill"></i> Editar
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="onDelete(product.id)"
+        >
+          <i class="bi bi-trash-fill"></i> Eliminar
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center mt-5">
+  <div class="row shadow-lg rounded overflow-hidden" style="max-width: 1000px; width: 90%;">
+    <div class="col-md-6 p-0">
+      <div class="image-container position-relative h-100">
+        <img
+          src="assets/images/img_login.png"
+          alt="Bienvenido a La Delicia"
+          class="w-100 h-100"
+          style="object-fit: cover;"
+        />
+        <div class="overlay"></div>
+      </div>
+    </div>
+
+    <div class="col-md-6 p-5 bg-white d-flex flex-column justify-content-center">
+      <h2 class="text-center mb-4 text-dark">
+        <i class="bi bi-person-circle me-2"></i>Iniciar Sesión
+      </h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="identifier" class="form-label fw-semibold">Correo Electrónico o Nombre de Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="identifier"
+            placeholder="Ingresa tu correo electrónico o nombre de usuario"
+            id="identifier"
+          />
+          <div *ngIf="loginForm.get('identifier')?.invalid && loginForm.get('identifier')?.touched">
+            <span class="text-danger" *ngIf="loginForm.get('identifier')?.hasError('required')">
+              Este campo es obligatorio.
+            </span>
+            <span class="text-danger" *ngIf="loginForm.get('identifier')?.hasError('minLength')">
+              Este campo debe de tener por lo menos 2 caracteres.
+            </span>
+            <span class="text-danger" *ngIf="loginForm.get('identifier')?.hasError('maxLength')">
+              Este campo debe de tener máximo 30 caracteres.
+            </span>
+            <span class="text-danger" *ngIf="loginForm.get('identifier')?.hasError('invalidGmail')">
+              El correo electrónico debe ser un Gmail válido (usuario&#64;gmail.com).
+            </span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Ingresa tu contraseña"
+            id="password"
+          />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('required')">>
+              La contraseña es requerida.
+            </span>
+            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('minlength')">
+              Mínimo 6 caracteres.
+            </span>
+            <span class="text-danger" *ngIf="loginForm.get('password')?.hasError('maxlength')">
+              Máximo 30 caracteres.
+            </span>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="rememberMe" />
+          <label class="form-check-label fw-semibold" for="rememberMe">
+            Recuérdame
+          </label>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-warning text-white fw-semibold">
+            <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar sesión
+          </button>
+        </div>
+
+        <div *ngIf="errorMessage" class="text-danger mt-2">
+          {{ errorMessage }}
+        </div>
+      </form>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-secondary btn-sm" (click)="redirectToForgotPassword()">
+          <i class="bi bi-question-circle me-1"></i>¿Olvidaste tu contraseña?
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

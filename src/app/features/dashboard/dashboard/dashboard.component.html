@@ -1,0 +1,205 @@
+<app-navbar></app-navbar>
+
+<!-- Sección de Bienvenida (similar a “Nuestra Historia”) -->
+<section class="mt-4 py-5">
+  <div class="container my-3">
+    <h2 class="text-center mb-4 display-6 text-dark">
+      <i class="bi bi-house-fill me-2"></i>Bienvenido a Panadería La Delicia
+    </h2>
+    <div class="card shadow-sm mb-5">
+      <div class="row g-0">
+        <!-- Columna Izquierda: Texto de Bienvenida -->
+        <div class="col-lg-6 p-4 d-flex flex-column justify-content-center">
+          <h3 class="mb-3">La mejor panadería de la ciudad</h3>
+          <p class="mb-0">
+            Ofreciendo productos frescos y deliciosos todos los días, con recetas heredadas de
+            generación en generación. ¡Disfruta de nuestra calidad y sabor casero!
+          </p>
+        </div>
+        <!-- Columna Derecha: Imagen -->
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+          <img
+            src="assets/images/landing_welcome.png"
+          class="img-fluid ms-5"
+          alt="Bienvenido"
+          style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Productos -->
+<section id="productos" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center pb-5 display-6 text-dark">
+      <i class="bi bi-basket3-fill me-2"></i>Nuestros Productos
+    </h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/pan_fresco.png" class="card-img-top" alt="Pan Fresco" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Pan Fresco</h5>
+            <p class="card-text">Nuestro pan se hornea fresco todos los días con los mejores ingredientes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_oreja.png" class="card-img-top" alt="Pastelería" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Deliciosa Repostería</h5>
+            <p class="card-text">Disfruta de una variedad de panes que se deshacen en tu boca.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/pan_integral.png" class="card-img-top" alt="Pan de temporada" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Pan para cada temporada</h5>
+            <p class="card-text">¡Tenemos el pan perfecto para cada ocasión, desde Día de Muertos hasta Navidad!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a routerLink="/products" class="btn btn-warning">Ver productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Acerca de Nosotros -->
+<section id="about" class="py-5">
+  <div class="container my-5">
+    <div class="row g-0 shadow-sm">
+      <div class="col-lg-6 p-4 d-flex flex-column justify-content-center">
+        <h3 class="mb-3">Acerca de Nosotros</h3>
+        <p class="mb-0">
+          Somos una panadería familiar con pasión por hornear los mejores panes, pasteles y tortas.
+          Nuestras recetas han sido transmitidas de generación en generación, asegurando calidad y
+          sabor en cada bocado.
+        </p>
+        <a routerLink="/about" class="btn btn-warning mt-3">Ver más</a>
+      </div>
+      <div class="col-lg-6 d-flex align-items-center justify-content-center">
+        <img
+          src="assets/images/landing_about.png"
+          class="img-fluid ms-5"
+          alt="Imagen Panadería"
+          style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px;"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Blog -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center pb-5 display-6 text-dark">Blog</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Card 1 -->
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_history.png" class="card-img-top" alt="Historia del Pan" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Historia del Pan</h5>
+            <p class="card-text">Conoce la fascinante historia del pan a lo largo de los siglos.</p>
+          </div>
+          <div class="card-footer bg-white">
+            El pan ha sido un alimento esencial...
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_integral.png" class="card-img-top" alt="Pan Integral" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Beneficios de Comer Pan Integral</h5>
+            <p class="card-text">Conoce los beneficios de agregar pan integral a tu dieta diaria.</p>
+          </div>
+          <div class="card-footer bg-white">
+            El pan integral es una opción saludable...
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_bake.png" class="card-img-top" alt="Hornear en casa" style="height: 200px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Consejos para Hornear en Casa</h5>
+            <p class="card-text">Tips y trucos para hornear como un profesional.</p>
+          </div>
+          <div class="card-footer bg-white">
+            Hornear en casa puede ser una experiencia...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Eventos Especiales -->
+<section id="eventos" class="py-5">
+  <div class="container">
+    <h2 class="text-center pb-5 display-6 text-dark">Eventos Especiales</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_taller.png" class="card-img-top" alt="Taller de Panadería" style="height: 500px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Taller de Panadería</h5>
+            <p class="card-text">Participa en nuestro taller de panadería y aprende a hacer deliciosos panes a tu manera.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+          <img src="assets/images/landing_feria.png" class="card-img-top" alt="Feria del Pan" style="height: 500px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">Feria del Pan</h5>
+            <p class="card-text">Únete a nosotros en la Feria del Pan y disfruta de degustaciones y concursos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Testimonios -->
+<section id="testimonios" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center pb-5 display-6 text-dark">Comentarios de Nuestros Clientes</h2>
+    <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active text-center">
+          <h5>María Pérez</h5>
+          <p>"Los mejores panes que he probado en mi vida. La calidad es insuperable."</p>
+        </div>
+        <div class="carousel-item text-center">
+          <h5>Juan López</h5>
+          <p>"Me encantan sus pasteles personalizados, siempre cumplen con mis expectativas."</p>
+        </div>
+        <div class="carousel-item text-center">
+          <h5>Ana Martínez</h5>
+          <p>"El servicio es excelente y los productos son siempre frescos y deliciosos."</p>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

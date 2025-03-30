@@ -1,0 +1,40 @@
+<div class="container p-4 my-3 mt-2">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h2 class="text-center">Listado de Empleados</h2>
+      <table class="table table-light table-striped">
+        <thead>
+        <tr>
+          <th class="centrado">Nombre</th>
+          <th class="centrado">Primer apellido</th>
+          <th class="centrado">Segundo apellido</th>
+          <th class="centrado">Calle</th>
+          <th class="centrado">Ciudad</th>
+          <th class="centrado">Código Postal</th>
+          <th class="centrado">Teléfono</th>
+          <th class="centrado">Funciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{ employee.name_employee }}</td>
+          <td>{{ employee.middle_name }}</td>
+          <td>{{ employee.last_name }}</td>
+          <td>{{ employee.street_address }}</td>
+          <td>{{ employee.city_address }}</td>
+          <td>{{ employee.postal_code }}</td>
+          <td>{{ employee.cellphone_number }}</td>
+          <td class="centrado">
+            <button type="button" class="btn btn-warning me-2" (click)="abrirModal(employee.id)">
+              Editar
+            </button>
+            <button class="btn btn-danger" (click)="abrirModalEliminar(employee.id)">
+              <i class="bi bi-trash"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

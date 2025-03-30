@@ -1,0 +1,49 @@
+<div class="table-responsive">
+  <table class="table table-hover table-bordered align-middle">
+    <thead class="table-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido Paterno</th>
+      <th>Apellido Materno</th>
+      <th>Teléfono</th>
+      <th>Correo</th>
+      <th>Usuario</th>
+      <th>Ciudad</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Código Postal</th>
+      <th>Método de Pago</th>
+      <th class="text-center">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.name }}</td>
+      <td>{{ client.first_surname }}</td>
+      <td>{{ client.last_surname }}</td>
+      <td>{{ client.phone_number }}</td>
+      <td>{{ client.email }}</td>
+      <td>{{ client.username }}</td>
+      <td>{{ client.city }}</td>
+      <td>{{ client.date_of_birth }}</td>
+      <td>{{ client.postal_code }}</td>
+      <td>{{ client.id_preferred_payment_method }}</td>
+      <td class="text-center" style="white-space: nowrap;">
+        <button
+          class="btn btn-warning btn-sm me-2"
+          (click)="onEdit(client)"
+          title="Editar cliente"
+        >
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="onDelete(client.id)"
+          title="Eliminar cliente"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

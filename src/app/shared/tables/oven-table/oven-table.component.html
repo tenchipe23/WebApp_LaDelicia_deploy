@@ -1,0 +1,31 @@
+<div class="table-responsive">
+    <h2 class="text-center">Listado de Productos</h2>
+    <table class="table table-light table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">Nombre del producto</th>
+          <th class="text-center">Ingredientes</th>
+          <th class="text-center">Tiempo de preparación</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td class="text-center">{{ product.name_product }}</td>
+          <td class="text-center">{{ product.ingredients }}</td>
+          <td class="text-center">{{ product.baking_time }}</td>
+          <td class="text-center">
+
+            <button class="btn btn-primary ms-2" (click)="onCook(product.id)">
+                <i class="bi bi-fire"></i> Cocinar
+              </button>
+
+
+              <!-- <button class="btn btn-danger ms-2" (click)="onDelete(product.id)">
+                <i class="bi bi-trash-fill"></i> Eliminar
+              </button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

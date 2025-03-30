@@ -1,0 +1,57 @@
+<div class="d-flex" style="min-height: 100vh;">
+  <!-- Menú lateral: Sidebar -->
+  <app-sidebar-panel class="flex-shrink-0" style="width: 250px;"></app-sidebar-panel>
+
+  <!-- Contenido principal del Horno/Temporizador -->
+  <div class="flex-grow-1 position-relative p-4">
+    <div class="container mt-4">
+      <h2 class="text-center mb-4">
+        <i class="bi bi-fire me-2"></i>
+        Preparación de Pan</h2>
+
+      <div class="interface">
+        <!-- Teclado Numérico -->
+        <div class="teclado">
+          <div class="numeric-keypad">
+            <button
+              *ngFor="let num of [1,2,3,4,5,6,7,8,9,'0']"
+              class="keypad-button"
+              (click)="enterDigit(num)">
+              {{ num }}
+            </button>
+            <button class="keypad-button special-button">-</button>
+            <button class="keypad-button delete-button" (click)="deleteLastDigit()">⌫</button>
+          </div>
+        </div>
+
+        <!-- Tabla de Productos -->
+        <div class="table">
+          <div class="table2">
+            <app-oven-table
+              [products]="products"
+              (cookProduct)="onCookProduct($event)">
+            </app-oven-table>
+          </div>
+        </div>
+
+        <!-- Panel de Control (LEDs, Timer) -->
+        <div class="control-panel">
+          <div class="back"></div>
+          <button [ngClass]="getRedButtonClass()"></button>
+          <div class="back2"></div>
+          <button [ngClass]="getGreenButtonRgbClass()"></button>
+          <button [ngClass]="getFinishedButtonClass()"></button>
+
+          <div class="timer-circle">
+            <div class="timer-display">{{ getFormattedTime() }}</div>
+          </div>
+        </div>
+
+        <!-- Botón para iniciar horneado -->
+        <button class="start" (click)="startBaking()">Empezar Horneado</button>
+      </div><!-- /.interface -->
+    </div><!-- /.container -->
+  </div><!-- /.flex-grow-1 -->
+</div><!-- /.d-flex -->
+
+<app-copyright></app-copyright>

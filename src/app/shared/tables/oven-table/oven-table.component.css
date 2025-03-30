@@ -1,0 +1,7 @@
+td {
+    max-height: 800px;
+    max-width: fit-content; /* Ajusta este valor según lo que necesites */
+    overflow: hidden; /* Evita que el contenido desborde */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos si el contenido es largo */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}

@@ -1,0 +1,58 @@
+/* Fondo y espaciado de la sección de contacto */
+#contact {
+  background-color: #f8f9fa; /* Fondo suave */
+}
+
+/* Contenedor del formulario */
+form {
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+/* Etiquetas y títulos del formulario */
+.form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Inputs y textarea */
+.form-control {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+/* Botón de envío */
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-warning:hover {
+  background-color: #e6ac00;
+  color: #fff;
+}
+
+/* Estilo para el iframe (Google Maps) */
+iframe {
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos de la sección */
+#contact h2 {
+  font-weight: bold;
+}
+
+#contact p.lead {
+  font-size: 1.25rem;
+}
